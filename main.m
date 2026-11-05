@@ -20,33 +20,12 @@ enemy = Tank([80, 80]);
 tanks = [player, enemy];
 num_tanks = numel(tanks);
 
-% create renderer for all tanks (also owns the window and key capture)
-renderer = Renderer(tanks, terrain_map);
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % sim loop                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 sim_running = true;
 while sim_running
     frame_start = tic;
-
-    % player 1 user input
-    if renderer.is_down("a")
-        player.drive('left');
-    elseif renderer.is_down("d")
-        player.drive('right');
-    else
-        player.drive('none');
-    end
-
-    % enemy user input
-    if renderer.is_down("leftarrow")
-        enemy.drive('left');
-    elseif renderer.is_down("rightarrow")
-        enemy.drive('right');
-    else
-        enemy.drive('none');
-    end
 
     % update tank kinematics
     for i = 1:num_tanks
@@ -57,12 +36,6 @@ while sim_running
 
     % increment time step
     time = time + TIME_STEP;
-
-    % draw the new state
-    renderer.render();
-
-    % if window closed, end sim
-    sim_running = renderer.is_open();
 
     % delay
     elapsed = toc(frame_start);
