@@ -45,6 +45,10 @@ classdef Projectile < handle
             end
         end
 
+        function pos = get_pos(obj)
+            pos = obj.r;
+        end
+
         function gnd = has_hit_ground(obj)
             gnd = obj.ground;
         end

@@ -62,6 +62,14 @@ classdef Tank < handle
             vel = obj.v;
         end
 
+        function aim(obj, target)
+            obj.cannonOrientation = atan2(target(2) - obj.r(2), target(1) - obj.r(1));
+        end
+
+        function ang = get_cannon_angle(obj)
+            ang = obj.cannonOrientation;
+        end
+
         % use to either get 
         function drive(obj, direction)
             switch direction
